@@ -4,7 +4,7 @@ flowchart TD
     B -->|Yes| C[Use role attribute]
     B -->|No| D{ElementInternals.role<br/>set?}
     D -->|Yes| E[Use ElementInternals.role]
-    D -->|No| F{"Behavior attached with<br/>GetDefaultARIARole?"}
+    D -->|No| F{"Behavior attached with<br/>DefaultAriaRole?"}
     F -->|Yes| G[Use behavior's default role]
     F -->|No| H[Use layout-based role]
 
