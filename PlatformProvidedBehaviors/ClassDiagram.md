@@ -4,11 +4,11 @@ classDiagram
         <<abstract>>
     }
 
-    class PlatformBehavior {
+    class ElementBehavior {
         <<new, abstract>>
         +SetElementInternals(ElementInternals*)
         +HandleActivation(Event&) bool
-        +GetDefaultARIARole() String
+        +DefaultAriaRole() String
         +IsAttached() bool
     }
 
@@ -26,7 +26,7 @@ classDiagram
         +value: String
         +IsEffectivelyDisabled() bool
         +HandleActivation(Event&) bool
-        +GetDefaultARIARole() String
+        +DefaultAriaRole() String
     }
 
     class HTMLElement {
@@ -38,7 +38,7 @@ classDiagram
     }
 
     class ElementInternals {
-        +behaviors: FrozenArray~PlatformBehavior~ 🆕
+        +behaviors: FrozenArray~ElementBehavior~ 🆕
         +FindBehavior~T~() T* 🆕
     }
 
@@ -52,14 +52,14 @@ classDiagram
         +Create(form, attrs, event, submitter, behavior?) FormSubmission* ⚡
     }
 
-    ScriptWrappable <|-- PlatformBehavior
-    PlatformBehavior <|-- HTMLSubmitButtonBehavior
+    ScriptWrappable <|-- ElementBehavior
+    ElementBehavior <|-- HTMLSubmitButtonBehavior
     HTMLElement "1" -- "0..1" ElementInternals : owns
-    ElementInternals "1" *-- "0..*" PlatformBehavior
+    ElementInternals "1" *-- "0..*" ElementBehavior
     HTMLFormElement ..> FormSubmission : creates
     HTMLSubmitButtonBehavior ..> HTMLFormElement : triggers submission
 
-    style PlatformBehavior fill: #90EE90, stroke: #228B22, color: #000000
+    style ElementBehavior fill: #90EE90, stroke: #228B22, color: #000000
     style HTMLSubmitButtonBehavior fill: #90EE90, stroke: #228B22, color: #000000
 ```
 
