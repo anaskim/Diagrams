@@ -43,13 +43,13 @@ classDiagram
     }
 
     class HTMLFormElement {
-        +PrepareForSubmission(Event*, Element*, Behavior*) void ⚡
-        +ScheduleFormSubmission(Event*, Element*, Behavior*) void ⚡
+        +PrepareForSubmission(Event*, Element*) void ⚡
+        +ScheduleFormSubmission(Event*, Element*) void ⚡
         +FindDefaultButton() Element* ⚡
     }
 
     class FormSubmission {
-        +Create(form, attrs, event, submitter, behavior?) FormSubmission* ⚡
+        +Create(form, attrs, event, submitter) FormSubmission* ⚡
     }
 
     ScriptWrappable <|-- ElementBehavior
