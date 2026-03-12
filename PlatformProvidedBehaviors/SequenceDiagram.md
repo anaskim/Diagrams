@@ -16,9 +16,9 @@ sequenceDiagram
         HTMLElement->>Behavior: HandleActivation(event)
         Behavior->>EI: Form()
         EI-->>Behavior: HTMLFormElement*
-        Behavior->>Form: PrepareForSubmission(event, element, behavior)
-        Form->>Form: ScheduleFormSubmission(event, element, behavior)
-        Form->>FS: Create(form, attrs, event, element, behavior)
+        Behavior->>Form: PrepareForSubmission(event, element)
+        Form->>Form: ScheduleFormSubmission(event, element)
+        Form->>FS: Create(form, attrs, event, element)
         Note over FS: Branches on behavior: applies<br/>overrides, builds FormData, request
         FS-->>Form: FormSubmission*
         Note over Form: CSP checks,<br/>UseCounters, navigation
