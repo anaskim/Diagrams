@@ -6,6 +6,7 @@ classDiagram
 
     class ElementBehavior {
         <<new, abstract>>
+        +BehaviorName() const char*
         +SetElementInternals(ElementInternals*)
         +HandleActivation(Event&) bool
         +DefaultAriaRole() String
@@ -24,6 +25,7 @@ classDiagram
         +labels: NodeList (readonly)
         +name: String
         +value: String
+        +BehaviorName() const char*
         +IsEffectivelyDisabled() bool
         +HandleActivation(Event&) bool
         +DefaultAriaRole() String
