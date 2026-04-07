@@ -3,19 +3,18 @@ sequenceDiagram
     participant User
     participant CustomElement
     participant HTMLElement as HTMLElement::DefaultEventHandler
-    participant EI as ElementInternals
     participant Behavior as HTMLSubmitButtonBehavior
     participant Form as HTMLFormElement
     participant FS as FormSubmission
 
-    User->>CustomElement: click
+    User->>CustomElement: click / Enter / Space
+    Note over CustomElement,HTMLElement: Keyboard events converted to<br/>simulated click via HandleKeyboardActivation
     CustomElement->>HTMLElement: DOMActivate event
-    HTMLElement->>EI: FindBehavior<HTMLSubmitButtonBehavior>()
-    EI-->>HTMLElement: HTMLSubmitButtonBehavior* (or nullptr)
+    HTMLElement->>HTMLElement: SubmitBehavior()
+    HTMLElement-->>HTMLElement: HTMLSubmitButtonBehavior* (or nullptr)
     alt Has submit behavior && !IsEffectivelyDisabled()
         HTMLElement->>Behavior: HandleActivation(event)
-        Behavior->>EI: Form()
-        EI-->>Behavior: HTMLFormElement*
+        Behavior->>Behavior: GetElementInternals()->Form()
         Behavior->>Form: PrepareForSubmission(event, element)
         Form->>Form: ScheduleFormSubmission(event, element)
         Form->>FS: Create(form, attrs, event, element)
